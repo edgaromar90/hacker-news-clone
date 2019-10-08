@@ -1,3 +1,47 @@
+html, body, div#app {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
 body {
-  background: #fff;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px;
+}
+
+.story-list {
+  padding: 10px 0;
+}
+
+.story-title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.story-title > a {
+  color: #21ce99;
+  text-decoration: none;
+}
+
+.story-subtitle {
+  color: #5a5a5a;
+  margin: 0;
+}
+
+.story-subtitle > a {
+  color: #000;
 }

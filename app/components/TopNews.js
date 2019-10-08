@@ -1,4 +1,5 @@
 import React from 'react'
+import Story from './Story'
 import { fetchTopStories } from '../utils/api'
 
 export default class TopNews extends React.Component {
@@ -32,7 +33,20 @@ export default class TopNews extends React.Component {
 
     return (
       <div>
-        {topNews && JSON.stringify(topNews, null, 2)}
+        <ul>
+        {topNews && topNews.map(({ descendants, time, title, type, url, id, by }) => (
+          <li key={id} className='story-list'>
+            <Story
+              numberOfComments={descendants}
+              date={new Date(new Date().getTime() - time).toLocaleString()}
+              title={title}
+              type={type}
+              url={url}
+              author={by}
+            />
+          </li>
+        ))}
+        </ul>
         {loading && <p>Loading</p>}
       </div>
     )
