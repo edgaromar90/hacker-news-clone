@@ -34,9 +34,10 @@ export default class TopNews extends React.Component {
     return (
       <div>
         <ul>
-        {topNews && topNews.map(({ descendants, time, title, type, url, id, by }) => (
+        {topNews && topNews.map(({ descendants = 0, time, title, type, url="", id, by }) => (
           <li key={id} className='story-list'>
             <Story
+              postId={id}
               numberOfComments={descendants}
               date={new Date(new Date().getTime() - time).toLocaleString()}
               title={title}
