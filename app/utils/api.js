@@ -16,10 +16,17 @@ export function fetchTopStories () {
     })
 }
 
-//export function fetchNewStories () {
-//  return fetchStories(storyType.NEW_STORIES)
-//}
-//
+export function fetchPost (id) {
+  return fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`)
+    .then((res) => res.json())
+    .then(({ kids, ...rest }) => {
+      return Promise.all(
+        kids.map((id) => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`)
+          .then((res) => res.json())
+          )).then((comments) => ({ ...rest, comments }))
+    })
+}
+
 //export function fetchBestStories () {
 //  return fetchStories(storyType.BEST_STORIES)
 //}

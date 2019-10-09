@@ -45,3 +45,15 @@ li {
 .story-subtitle > a {
   color: #000;
 }
+
+.comment-card {
+  padding: 20px;
+  margin: 10px 0;
+  background: #eee;
+  border-radius: 10px;
+  word-spacing: 0.2em;
+}
+
+.comment-card > .story-subtitle {
+  margin-bottom: 15px;
+}
