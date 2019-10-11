@@ -15,7 +15,6 @@ export default class Post extends React.Component {
   }
 
   componentDidMount () {
-    //Get the post_id from queryUrl
     const { id } = queryString.parse(this.props.location.search)
 
     fetchPost(id)
@@ -55,7 +54,7 @@ export default class Post extends React.Component {
             <StorySubtitle
               postId={id}
               date={new Date(new Date().getTime() - time).toLocaleString()}
-              author={by}
+              author={author}
              />
             <div dangerouslySetInnerHTML={{__html: text}} />
           </div>

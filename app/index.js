@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import ListPost from './components/ListPost'
 import Post from './components/Post'
+import User from './components/User'
 import Navbar from './components/Navbar'
 import './index.css'
 
@@ -14,6 +15,7 @@ class App extends React.Component {
           <Navbar />
           <Switch>
             <Route exact path='/post' component={Post} />
+            <Route exact path={'/user'} component={User} />
             <Route exact path={['/', '/new']} component={ListPost} />
           </Switch>
         </div>

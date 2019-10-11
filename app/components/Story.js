@@ -19,7 +19,7 @@ StoryTitle.propTypes = {
 export function StorySubtitle ({ author, date, postId, numberOfComments }) {
   return (
     <p className='story-subtitle'>
-      by <a href="#">{author}</a> on {date} {isNaN(numberOfComments)
+      by <Link to={{pathname: '/user', search: `?id=${author}`}}>{author}</Link> on {date} {isNaN(numberOfComments)
         ? null
         : <React.Fragment>
             with <Link to={{pathname: '/post', search: `?id=${postId}`}}> {numberOfComments}</Link> comments

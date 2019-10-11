@@ -27,11 +27,12 @@ export function fetchPost (id) {
     })
 }
 
-/*
-** TODO - STRETCH:
-**   ** add Best Stories Tab
-*/
-
-//export function fetchBestStories () {
-//  return fetchStories(storyType.BEST_STORIES)
-//}
+export function fetchUserData (id) {
+  return fetch(`https://hacker-news.firebaseio.com/v0/user/${id}.json?print=pretty`)
+    .then((res) => res.json())
+    .then(({ submitted, ...rest }) => {
+      return Promise.all(submitted.slice(0, 50).map((id) => fetchPost(id)))
+        .then((posts) => posts.filter((post) => post !== null && post.type == 'story' && post.title && post.by))
+        .then((posts) => ({ ...rest, posts }))
+    })
+}
