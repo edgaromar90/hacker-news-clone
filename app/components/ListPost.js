@@ -2,6 +2,7 @@ import React from 'react'
 import { StoryTitle, StorySubtitle } from './Story'
 import { fetchAllStories } from '../utils/api'
 import storyType from '../utils/constants'
+import Loading from '../components/Loading'
 
 export default class ListPost extends React.Component {
   constructor(props) {
@@ -43,11 +44,6 @@ export default class ListPost extends React.Component {
       })
   }
 
-  /*
-  ** TODO:
-  **   ** Use a React Pattern to DNRY (API Call, state and loading between ListPost.js and Post.js)
-  */
-
   render() {
     const { topNews, loading } = this.state
 
@@ -69,7 +65,7 @@ export default class ListPost extends React.Component {
           </li>
         ))}
         </ul>
-        {loading && <p>Loading</p>}
+        {loading && <Loading />}
       </div>
     )
   }

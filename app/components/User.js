@@ -2,6 +2,7 @@ import React from 'react'
 import queryString from 'query-string'
 import { fetchUserData } from '../utils/api'
 import { StoryTitle, StorySubtitle } from '../components/Story'
+import Loading from '../components/Loading'
 
 export default class User extends React.Component {
   constructor(props) {
@@ -48,7 +49,7 @@ export default class User extends React.Component {
         <div className='about' dangerouslySetInnerHTML={{__html: about}} />
         <h2>Posts</h2>
         {this.state.loading
-          ? <h3>Loading</h3>
+          ? <Loading />
           : (
             <ul>
             {posts && posts.map(({ descendants = 0, time, title, url="", id, by }) => (

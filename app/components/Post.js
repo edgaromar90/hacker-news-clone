@@ -1,6 +1,7 @@
 import React from 'react'
 import queryString from 'query-string'
 import { StoryTitle, StorySubtitle } from './Story'
+import Loading from '../components/Loading'
 import { fetchPost } from '../utils/api'
 
 export default class Post extends React.Component {
@@ -30,8 +31,8 @@ export default class Post extends React.Component {
   render() {
     const { comments = [], loading, post } = this.state
 
-    if(!post) {
-      return null
+    if(loading) {
+      return <Loading text="Fetching comments" />
     }
 
     const { id, descendants, title, time, url, by } = post

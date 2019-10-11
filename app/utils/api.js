@@ -1,7 +1,7 @@
 function fetchStories (type) {
   return fetch(`https://hacker-news.firebaseio.com/v0/${type}.json?print=pretty`)
     .then((res) => res.json())
-    .then((data) => data.slice(0, 50))
+    .then((data) => data.slice(0, 100))
 }
 
 export function fetchAllStories (type) {
@@ -22,7 +22,7 @@ export function fetchPost (id) {
         kids.map((id) => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`)
           .then((res) => res.json())
           ))
-          .then((comments) => comments.filter((comment) => comment !== null))
+          .then((comments) => comments.filter((comment) => comment !== null && !comment.deleted))
           .then((comments) => ({ ...rest, comments }))
     })
 }
