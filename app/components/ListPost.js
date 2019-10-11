@@ -1,8 +1,9 @@
 import React from 'react'
 import Story from './Story'
-import { fetchTopStories } from '../utils/api'
+import { fetchAllStories } from '../utils/api'
+import storyType from '../utils/constants'
 
-export default class TopNews extends React.Component {
+export default class ListPost extends React.Component {
   constructor(props) {
     super(props)
 
@@ -10,10 +11,24 @@ export default class TopNews extends React.Component {
       topNews: null,
       loading: true,
     }
+
+    this.fetchData = this.fetchData.bind(this)
   }
 
   componentDidMount () {
-    fetchTopStories()
+    this.fetchData()
+  }
+
+  componentDidUpdate (prevProps) {
+    prevProps.match.path != this.props.match.path && this.fetchData()
+  }
+
+  fetchData () {
+    const { path } = this.props.match
+    const type =  path == '/' ? storyType.TOP : storyType.NEW
+
+    this.setState({ loading: true, topNews: null })
+    fetchAllStories(type)
       .then((data) => {
 
         this.setState({

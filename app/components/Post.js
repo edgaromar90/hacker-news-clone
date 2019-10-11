@@ -1,5 +1,6 @@
 import React from 'react'
 import queryString from 'query-string'
+import Story from './Story'
 import { fetchPost } from '../utils/api'
 
 export default class Post extends React.Component {
@@ -28,28 +29,34 @@ export default class Post extends React.Component {
   }
 
   render() {
-    const { comments, loading, post } = this.state
+    const { comments = [], loading, post } = this.state
 
     if(!post) {
       return null
     }
 
-    console.log("state", this.state)
+    const { id, descendants, title, time, type, url, by } = post
 
     return (
-      <React.Fragment>
-        <h3 className='story-title'>
-          {post.title}
-        </h3>
+      <div className='post-container'>
+        <Story
+          postId={id}
+          numberOfComments={descendants}
+          date={new Date(new Date().getTime() - time).toLocaleString()}
+          title={title}
+          type={type}
+          url={url}
+          author={by}
+        />
         {comments.map(({ text, by:author, time:date }, index) => (
-          <div className='comment-card'>
+          <div key={index} className='comment-card'>
             <p className='story-subtitle'>
               by <a href="#">{author}</a> on {new Date(new Date().getTime() - date).toLocaleString()}
             </p>
-            <div key={index} dangerouslySetInnerHTML={{__html: text}} />
+            <div dangerouslySetInnerHTML={{__html: text}} />
           </div>
         ))}
-      </React.Fragment>
+      </div>
     )
   }
 }

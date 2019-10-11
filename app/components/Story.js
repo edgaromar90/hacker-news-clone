@@ -10,7 +10,7 @@ export default function Story ({ numberOfComments, date, title, type, url, autho
       </h3>
       <p className='story-subtitle'>
         by <a href="#">{author}</a> on {date} with
-        <Link to={{pathname: '/post', search: `?id=${postId}`}}>{numberOfComments}</Link> comments
+        <Link to={{pathname: '/post', search: `?id=${postId}`}}> {numberOfComments}</Link> comments
       </p>
     </React.Fragment>
   )

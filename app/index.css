@@ -57,3 +57,15 @@ li {
 .comment-card > .story-subtitle {
   margin-bottom: 15px;
 }
+
+.navbar-item {
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 10px;
+  text-decoration: none;
+  color: #000;
+}
+
+.post-container {
+  margin-top: 20px;
+}
