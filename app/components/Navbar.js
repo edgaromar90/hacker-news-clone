@@ -7,9 +7,9 @@ const activeStyle = {
 
 export default function Navbar () {
   return (
-    <div>
+    <nav>
       <NavLink exact to='/' className='navbar-item' activeStyle={activeStyle}>Top</NavLink>
       <NavLink exact to='/new' className='navbar-item' activeStyle={activeStyle}>New</NavLink>
-    </div>
+    </nav>
   )
 }

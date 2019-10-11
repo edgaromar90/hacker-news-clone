@@ -1,5 +1,5 @@
 import React from 'react'
-import Story from './Story'
+import { StoryTitle, StorySubtitle } from './Story'
 import { fetchAllStories } from '../utils/api'
 import storyType from '../utils/constants'
 
@@ -43,23 +43,29 @@ export default class ListPost extends React.Component {
       })
   }
 
+  /*
+  ** TODO:
+  **   ** Use a React Pattern to DNRY (API Call, state and loading between ListPost.js and Post.js)
+  */
+
   render() {
     const { topNews, loading } = this.state
 
     return (
       <div>
         <ul>
-        {topNews && topNews.map(({ descendants = 0, time, title, type, url="", id, by }) => (
+        {topNews && topNews.map(({ descendants = 0, time, title, url="", id, by }) => (
           <li key={id} className='story-list'>
-            <Story
+            <StoryTitle
+              url={url}
+              title={title}
+            />
+            <StorySubtitle
               postId={id}
               numberOfComments={descendants}
               date={new Date(new Date().getTime() - time).toLocaleString()}
-              title={title}
-              type={type}
-              url={url}
               author={by}
-            />
+             />
           </li>
         ))}
         </ul>
